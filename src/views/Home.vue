@@ -4,7 +4,7 @@
       <img src="https://cdn.mensagenscomamor.com/content/images/m000486780.jpg?v=1" alt="">
     </div>
     <div class="row justify-content-center">
-      <h1 class="display-1 mt-5">OLÁ OTÁRIO!</h1>
+      <h1 class="display-1 mt-5">LEU PQ É GAY</h1>
     </div>
   </div>
 </template>
