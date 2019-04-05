@@ -1,51 +1,39 @@
-const sqlite3 = require('sqlite3').verbose();
+const { Pool } = require('pg');
+const types = require('pg').types;
 
-class Db {
-  constructor(file) {
-    this.db = new sqlite3.Database(file);
-    this.createTable();
-  }
+types.setTypeParser(20, function (val) {
+  return parseInt(val);
+});
 
-  createTable() {
-    const sql = `
-            CREATE TABLE IF NOT EXISTS user (
-                id integer PRIMARY KEY, 
-                name text, 
-                email text UNIQUE, 
-                user_pass text,
-                is_admin integer)`;
-    return this.db.run(sql);
-  }
+types.setTypeParser(1700, function (val) {
+  return parseFloat(val);
+});
 
-  selectByEmail(email, callback) {
-    return this.db.get('SELECT * FROM user WHERE email = ?',
-      [email], (err, row) => {
-        callback(err, row);
+module.exports = class DataBase {
+
+  static getClient() {
+    if (!global.postgresConn) {
+      global.postgresConn = new Pool({
+        user: process.env.DATABASE_USER || 'postgres',
+        host: process.env.DATABASE_HOST || 'localhost',
+        database: process.env.DATABASE_NAME || 'corvinal',
+        password: process.env.DATABASE_PASSWORD || 'postgres',
+        port: 5432,
       });
-  }
+    }
+    return global.postgresConn;
+  };
 
-  insertAdmin(user, callback) {
-    return this.db.run(
-      'INSERT INTO user (name,email,user_pass,is_admin) VALUES (?,?,?,?)',
-      user, (err) => {
-        callback(err);
-      });
+  static query(sql, values) {
+    return new Promise((sucesso, falha) => {
+      const client = DataBase.getClient();
+      client.query(sql, values)
+        .then(result => {
+          return sucesso(result.rows);
+        })
+        .catch(e => {
+          return falha("ERRO", e);
+        });
+    });
   }
-
-  selectAll(callback) {
-    return this.db.all('SELECT * FROM user',
-      (err, rows) => {
-        callback(err, rows);
-      });
-  }
-
-  insert(user, callback) {
-    return this.db.run(
-      'INSERT INTO user (name,email,user_pass) VALUES (?,?,?)',
-      user, (err) => {
-        callback(err);
-      });
-  }
-}
-
-module.exports = Db;
+};
