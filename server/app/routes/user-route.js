@@ -8,7 +8,7 @@ module.exports = application => {
 
   application.get(`${EP}/get`, async (req, res) => {
     try {
-      const user = await userControl.get();
+      const user = userControl.get();
       Response.sendSucesso(res, user);
     } catch (error) {
       Response.sendErro(res, error);
@@ -17,7 +17,7 @@ module.exports = application => {
 
   application.post(`${EP}/post`, async (req, res) => {
     try {
-      console.log('AQUI', req.body);
+      console.log("AQUI", req.body);
       const user = userControl.post(req.body);
       Response.sendSucesso(res, user);
     } catch (error) {

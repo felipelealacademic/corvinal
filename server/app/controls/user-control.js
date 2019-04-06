@@ -5,8 +5,8 @@ const DB = require('../config/db');//Configuracao banco
 
 module.exports = class userControl {
 
-  static async get() {
-    return await DB.query('Select * from usuario');
+  static get() {
+    return 'Sucesso';
   }
 
   static post() {
