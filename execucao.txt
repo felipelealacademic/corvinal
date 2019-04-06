@@ -1,0 +1,7 @@
+executar 'npm i'
+
+executar 'npm i -g nodemon'
+
+'npm run serve' = vai servir o front-end
+
+entrar na pasta server => 'cd server' => excutar comando 'nodemon app' para servir o back-end
