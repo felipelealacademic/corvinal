@@ -1,28 +1,24 @@
 <template>
-  <div class="container text-center">
-    <div class="row justify-content-center">
-      <img src="https://cdn.mensagenscomamor.com/content/images/m000486780.jpg?v=1" alt>
-    </div>
-    <div class="row justify-content-center">
-      <h1 class="display-1 mt-5">LEU PQ É GAY</h1>
-    </div>
+  <div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: "Home",
+  name: 'Home',
   components: {},
 
   mounted() {
-    this.$http
-      .get("http://localhost:3000/user/get")
+    axios
+      .get('http://localhost:3000/user/get')
       .then(response => console.log(response));
 
-    this.$http
-      .post("http://localhost:3000/user/post", { nome: "Alisson" })
+    axios
+      .post('http://localhost:3000/user/post', { nome: 'Alisson' })
       .then(response => console.log(response));
-  }
+  },
 };
 </script>
 

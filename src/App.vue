@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <sidebar :open="openSidebar" @toggle-sidebar="openSidebar = !openSidebar" />
+    <!-- <sidebar :open="openSidebar" @toggle-sidebar="openSidebar = !openSidebar" /> -->
     <router-view  @toggle-sidebar="openSidebar = !openSidebar" />
-    <footer-vue />
+    <!-- <footer-vue /> -->
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar.vue';
-import FooterVue from '@/components/FooterVue.vue';
+// import Sidebar from '@/components/Sidebar.vue';
+// import FooterVue from '@/components/FooterVue.vue';
 
 export default {
   name: 'App',
-  components: {
-    Sidebar,
-    FooterVue,
-  },
+  // components: {
+  //   Sidebar,
+  //   FooterVue,
+  // },
   data() {
     return {
-      openSidebar: false, 
+      openSidebar: false,
     };
   },
 };
