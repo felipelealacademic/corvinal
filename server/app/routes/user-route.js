@@ -15,13 +15,23 @@ module.exports = application => {
     }
   });
 
-  application.post(`${EP}/post`, async (req, res) => {
+  application.post(`${EP}/sigin`, async (req, res) => {
     try {
-      // console.log('AQUI', req.body);
-      const user = userControl.post(req.body);
+      const user = await userControl.sigIn(req.body);
       Response.sendSucesso(res, user);
     } catch (error) {
       Response.sendErro(res, error);
     }
   });
+
+  application.post(`${EP}/post`, async (req, res) => {
+    try {
+      const user = await userControl.post(req.body);
+      Response.sendSucesso(res, user);
+    } catch (error) {
+      Response.sendErro(res, error);
+    }
+  });
+
+
 }

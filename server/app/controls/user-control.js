@@ -6,15 +6,29 @@ const DB = require('../config/db');//Configuracao banco
 module.exports = class userControl {
 
   static async get() {
-    var senha = bcrypt.hashSync('123', 8);// gera a senha criptografada
-    let token = jwt.sign({ id: '1' }, config.secret, { expiresIn: 86400 }); // gera token
-    let passwordIsValid = bcrypt.compareSync('123', bcrypt.hashSync('1234', 8)); //valida senha criptografada
-    console.log(passwordIsValid);
-    console.log(token);
     return await DB.query('Select * from usuario');
   }
 
-  static post() {
-    return 'Sucesso';
+  static async sigIn(usuario) {
+    var usuarioDB = await DB.query(`Select * from usuario WHERE usuario.email = '${usuario.email}'`);
+
+    let passwordIsValid = bcrypt.compareSync(usuario.senha, usuarioDB.length ? usuarioDB[0].senha : ''); //valida senha criptografada
+
+    if (passwordIsValid) {
+      console.log('Usuário encontrado');
+    } else {
+      console.log('Usuário não encontrado');
+    }
+  }
+
+  static async post(usuario) {
+    let token = jwt.sign({ id: '1' }, config.secret, { expiresIn: 86400 }); // gera token
+    usuario.senha = bcrypt.hashSync(usuario.senha, 8); // gera a senha criptografada
+
+    var sql = `INSERT INTO usuario (nome, sobrenome, email, senha) VALUES ('${usuario.nome}', '${usuario.sobrenome}', '${usuario.email}','${usuario.senha}')`;
+
+    var retorno = await DB.query(sql);
+
+    return retorno;
   }
 };
