@@ -7,8 +7,8 @@
     </div>
 
     <div class="container card-max-height">
-      <div class="row justify-content-around card p-3">
-        <form>
+      <div class="row justify-content-around">
+        <form class="card col-8 p-5">
           <div class="form-row">
             <div class="has-float-label my-2 col-lg-12 col-md-12 col-sm-12">
               <input
