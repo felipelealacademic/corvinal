@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <sidebar :open="openSidebar" @toggle-sidebar="openSidebar = !openSidebar" /> -->
-    <router-view  @toggle-sidebar="openSidebar = !openSidebar" />
+    <router-view/>
     <!-- <footer-vue /> -->
   </div>
 </template>

@@ -15,3 +15,8 @@ new Vue({
   store,
   render: h => h(App),
 }).$mount('#app');
+
+// const home = new Vue({
+//   router,
+//   render: h => h(home),
+// }.$mount('#home'));

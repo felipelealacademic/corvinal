@@ -1,0 +1,64 @@
+.has-float-label input:placeholder-shown:not(:focus)+*, 
+.has-float-label select:placeholder-shown:not(:focus)+*, 
+.has-float-label textarea:placeholder-shown:not(:focus)+*{
+  font-size: 95%;
+  opacity: .5;
+  top: 1.25em;
+}
+
+.has-float-label input, .has-float-label select, .has-float-label textarea {
+  width: 100%;
+  font-size: inherit;
+  padding: 0.75em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  margin-bottom: 2px;
+  border: 1px solid #ced4da;
+  /* border-bottom: 2px solid rgba(0,0,0,.1); */
+}
+
+.has-float-label input.rounded, .has-float-label select.rounded, .has-float-label textarea.rounded {
+  border-radius: 30px !important;
+}
+
+.has-float-label input.form-control.rounded {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.has-float-label .input-group-append .input-group-text.custom-radius {
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.has-float-label label {
+  position: absolute;
+  cursor: text;
+  font-size: 75%;
+  opacity: 1;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: -.5em;
+  left: 1.25rem;
+  z-index: 3;
+  line-height: 1;
+  padding: 0 1px;
+
+  &.custom-float-left {
+    left: 1.5rem;
+  }
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)+label {
+  font-size: 95% !important;
+  opacity: .5 !important;
+  top: 1.25em !important;
+}
+
+.has-float-label input.form-control:focus {
+  box-shadow: none;
+}
+
+.has-float-label .input-group > .form-control {
+  height: 100%;
+}
