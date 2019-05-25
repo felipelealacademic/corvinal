@@ -157,7 +157,7 @@ export default {
           // }
           if (this.cod_unepe === e.cod) {
             this.validate_unepe = false;
-            this.data.unepes_selec.push({cod: e.cod, name: e.name});
+            this.data.unepes_selec.push({ cod: e.cod, name: e.name });
           } else {
             // this.validate_unepe = true;
           }
