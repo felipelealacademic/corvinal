@@ -104,20 +104,10 @@
                   </div>
                 </div>
                 <div
-                  v-show="validate_unepe"
+                  v-show="erro"
                   class="alert alert-danger text-center my-3"
                   role="alert"
-                >Código de UNEPE inválido!</div>
-                <div
-                  v-show="password_validate"
-                  class="alert alert-danger text-center my-3"
-                  role="alert"
-                >Verifique se as senhas são iguais!</div>
-                <div
-                  v-show="campos_validate"
-                  class="alert alert-danger text-center my-3"
-                  role="alert"
-                >Campos obrigatórios não informados!</div>
+                >{{erroMessage}}</div>
                 <div class="row justify-content-center">
                   <div class="col-8">
                     <hr>
@@ -184,9 +174,8 @@ export default {
       ],
 
       // VALIDATE
-      password_validate: false,
-      validate_unepe: false,
-      campos_validate: false
+      erro: false,
+      erroMessage: ""
     };
   },
 
@@ -207,13 +196,14 @@ export default {
         if (this.cod_unepe !== null && this.cod_unepe !== undefined) {
           this.unepes.forEach(e => {
             if (this.cod_unepe === e.cod) {
-              this.validate_unepe = false;
+              this.erro = false;
               this.data.unepes_selec.push({ cod: e.cod, name: e.name });
             }
           });
         }
       } else {
-        this.validate_unepe = true;
+        this.erro = true;
+        this.erroMessage = "Código UNEP inválido!";
       }
     },
 
@@ -231,10 +221,12 @@ export default {
         !this.data.password ||
         this.data.password_validate
       ) {
-        this.campos_validate = true;
+        this.erro = true;
+        this.erroMessage = "Campos obrigatórios não informados!";
       } else {
         if (this.data.password !== this.data.confirm_password) {
-          this.password_validate = true;
+          this.erro = true;
+          this.erroMessage = "Verifique se as senhas estão iguais!";
         } else {
           axios
             .post("http://localhost:3000/user/post", { data: this.data })
@@ -244,6 +236,8 @@ export default {
                 this.data = {};
                 this.cod_unepe = "";
               } else {
+                this.erro = true;
+                this.erroMessage = response.data.message.message;
                 console.log("Algum erro", response);
               }
             })
