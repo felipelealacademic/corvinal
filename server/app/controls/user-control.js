@@ -24,23 +24,29 @@ module.exports = class userControl {
 
   static async post(usuario) {
 
-    let token = jwt.sign({ id: '1' }, config.secret, { expiresIn: 86400 }); // gera token
-    usuario.password = bcrypt.hashSync(usuario.password, 8); // gera a senha criptografada
+    var usuarioDB = await DB.query(`Select * from user_system WHERE user_system.email = '${usuario.email}'`);
+    if (!usuarioDB.length) {
 
-    var sql = `INSERT INTO user_system (name, lastname, email, password, cod_acad) VALUES ('${usuario.name}', '${usuario.lastname}', '${usuario.email}','${usuario.password}','${usuario.cod_acad}') RETURNING id`;
+      // let token = jwt.sign({ id: '1' }, config.secret, { expiresIn: 86400 }); // gera token
+      usuario.password = bcrypt.hashSync(usuario.password, 8); // gera a senha criptografada
 
-    var retorno = await DB.query(sql);
+      var sql = `INSERT INTO user_system (name, lastname, email, password, cod_acad) VALUES ('${usuario.name}', '${usuario.lastname}', '${usuario.email}','${usuario.password}','${usuario.cod_acad}') RETURNING id`;
 
-    var idUser = retorno[0].id;
+      var retorno = await DB.query(sql);
 
-    usuario.unepes_selec.forEach(async (unep) => {
-      try {
-        var sqlUnep = `INSERT INTO unep (name, cod, fk_id_user, fk_id_coordenacao) VALUES ('${unep.name}', ${unep.cod}, ${idUser}, ${1})`;
-        retorno = await DB.query(sqlUnep);
-      } catch (error) {
-        retorno = Response.falhaSalvar();
-      }
-    });
-    return retorno;
+      var idUser = retorno[0].id;
+
+      usuario.unepes_selec.forEach(async (unep) => {
+        try {
+          var sqlUnep = `INSERT INTO unep (name, cod, fk_id_user, fk_id_coordenacao) VALUES ('${unep.name}', ${unep.cod}, ${idUser}, ${1})`;
+          retorno = await DB.query(sqlUnep);
+        } catch (error) {
+          retorno = Response.falhaSalvar();
+        }
+      });
+      return retorno;
+    } else {
+      return Response.retorno(0, "Email já cadastrado");
+    }
   }
 };
