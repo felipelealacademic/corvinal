@@ -70,7 +70,7 @@ export default {
 
   methods: {
     postLogin() {
-      axios.post('localhost:3000/login/post', { data: this.data })
+      axios.post('http://localhost:3000/login/post', { data: this.data })
         .then(response => console.log('logado com sucesso', response))
         .catch(e => console.log(e));
     },

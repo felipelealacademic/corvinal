@@ -30,7 +30,7 @@
                   </div>
                   <div class="col-6 has-float-label">
                     <input id="last-name" type="text"
-                      class="rounded" v-model="data.lastname"
+                      class="rounded" v-model="data.last_name"
                       placeholder="Sobrenome">
                     <label class="custom-float-left" for="last-name">Sobrenome</label>
                   </div>
@@ -87,8 +87,8 @@
                 <!-- UNEPES SELECIONADAS -->
                 <span>UNEPEs selecionadas</span>
                 <div class="form-row my-3">
-                  <add-unepe v-for="(unepe, index) in data.unepes_selec" :key="unepe[0]"
-                    :unepe="unepe[1]" :index="index" @removeUnepe="removeUnepeSelec(index)"
+                  <add-unepe v-for="(unepe, index) in data.unepes_selec" :key="index"
+                    :unepe="unepe.name" :index="index" @removeUnepe="removeUnepeSelec(index)"
                   ></add-unepe>
                 </div>
                 <div class="text-center pt-4">
@@ -123,7 +123,7 @@ export default {
       data: {
         email: '',
         name: '',
-        lastname: '',
+        last_name: '',
         cod_acad: '',
         unepes_selec: [],
         password: '',
@@ -134,9 +134,9 @@ export default {
         // { 123: { nome: 'Cortes Bovinos' } },
         // { 456: { nome: 'Adubos Diversos' } },
         // { 789: { nome: 'Example Unepe' } },
-        { id: '123', nome: 'Cortes Bovinos' },
-        { id: '456', nome: 'Adubos Diversos' },
-        { id: '789', nome: 'Example Unepe' },
+        { cod: '123', name: 'Cortes Bovinos' },
+        { cod: '456', name: 'Adubos Diversos' },
+        { cod: '789', name: 'Example Unepe' },
       ],
 
       // VALIDATE
@@ -155,11 +155,11 @@ export default {
           // if (this.unepes.has(e[this.cod_unepe])) {
           //   this.data.unepes_selec.push(this);
           // }
-          if (this.cod_unepe === e.id) {
+          if (this.cod_unepe === e.cod) {
             this.validate_unepe = false;
-            this.data.unepes_selec.push([e.id, e.nome]);
+            this.data.unepes_selec.push({ cod: e.cod, name: e.name });
           } else {
-            this.validate_unepe = true;
+            // this.validate_unepe = true;
           }
         });
       }
@@ -170,7 +170,7 @@ export default {
     },
 
     postRegister() {
-      axios.post('localhost:3000/user/post', { data: this.data })
+      axios.post('http://localhost:3000/user/post', { data: this.data })
         .then(response => console.log('salvo com sucesso', response))
         .catch(e => console.log(e));
     },

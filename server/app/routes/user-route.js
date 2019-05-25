@@ -17,7 +17,7 @@ module.exports = application => {
 
   application.post(`${EP}/sigin`, async (req, res) => {
     try {
-      const user = await userControl.sigIn(req.body);
+      const user = await userControl.sigIn(req.body.data);
       Response.sendSucesso(res, user);
     } catch (error) {
       Response.sendErro(res, error);
@@ -26,7 +26,7 @@ module.exports = application => {
 
   application.post(`${EP}/post`, async (req, res) => {
     try {
-      const user = await userControl.post(req.body);
+      const user = await userControl.post(req.body.data);
       Response.sendSucesso(res, user);
     } catch (error) {
       Response.sendErro(res, error);
