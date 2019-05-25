@@ -30,7 +30,7 @@
                   </div>
                   <div class="col-6 has-float-label">
                     <input id="last-name" type="text"
-                      class="rounded" v-model="data.lastname"
+                      class="rounded" v-model="data.last_name"
                       placeholder="Sobrenome">
                     <label class="custom-float-left" for="last-name">Sobrenome</label>
                   </div>
@@ -123,7 +123,7 @@ export default {
       data: {
         email: '',
         name: '',
-        lastname: '',
+        last_name: '',
         cod_acad: '',
         unepes_selec: [],
         password: '',
@@ -134,9 +134,9 @@ export default {
         // { 123: { nome: 'Cortes Bovinos' } },
         // { 456: { nome: 'Adubos Diversos' } },
         // { 789: { nome: 'Example Unepe' } },
-        { id: '123', nome: 'Cortes Bovinos' },
-        { id: '456', nome: 'Adubos Diversos' },
-        { id: '789', nome: 'Example Unepe' },
+        { cod: '123', nome: 'Cortes Bovinos' },
+        { cod: '456', nome: 'Adubos Diversos' },
+        { cod: '789', nome: 'Example Unepe' },
       ],
 
       // VALIDATE
@@ -155,11 +155,11 @@ export default {
           // if (this.unepes.has(e[this.cod_unepe])) {
           //   this.data.unepes_selec.push(this);
           // }
-          if (this.cod_unepe === e.id) {
+          if (this.cod_unepe === e.cod) {
             this.validate_unepe = false;
-            this.data.unepes_selec.push([e.id, e.nome]);
+            this.data.unepes_selec.push([e.cod, e.nome]);
           } else {
-            this.validate_unepe = true;
+            // this.validate_unepe = true;
           }
         });
       }
@@ -170,7 +170,7 @@ export default {
     },
 
     postRegister() {
-      axios.post('localhost:3000/user/post', { data: this.data })
+      axios.post('http://localhost:3000/user/post', { data: this.data })
         .then(response => console.log('salvo com sucesso', response))
         .catch(e => console.log(e));
     },
