@@ -5,8 +5,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
   // background: -moz-linear-gradient(top, rgba(254,203,0,1) 0%, rgba(255,215,69,1) 43%, rgba(245,218,120,1) 100%);
   // background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(254,203,0,1)), color-stop(43%, rgba(255,215,69,1)), color-stop(100%, rgba(245,218,120,1)));
   // background: -webkit-linear-gradient(top, rgba(254,203,0,1) 0%, rgba(255,215,69,1) 43%, rgba(245,218,120,1) 100%);
@@ -14,6 +12,23 @@
   // background: -ms-linear-gradient(top, rgba(254,203,0,1) 0%, rgba(255,215,69,1) 43%, rgba(245,218,120,1) 100%);
   // background: linear-gradient(to bottom, rgba(254,203,0,1) 0%, rgba(255,215,69,1) 43%, rgba(245,218,120,1) 100%);
   // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fecb00', endColorstr='#f5da78', GradientType=0 );
+}
+
+.logo-utfpr{
+  margin: 0 20px 20px 20px;
+  padding: 20px 0 0 0;
+}
+
+.title-register{
+  font-size: 26px;
+  font-weight: 400;
+  color: rgb(27, 27, 27);
+  padding: 10px 10px 10px 15px;
+}
+
+.separator{
+  border-bottom: 1px solid #d6d6d6;
+  padding: 0 10px 0 10px;
 }
 
 .card.card-custom {
