@@ -46,7 +46,7 @@ module.exports = class userControl {
       });
       return retorno;
     } else {
-      return Response.retorno(0, "Email já cadastrado");
+      return Response.retorno(-1, "Email já cadastrado");
     }
   }
 };

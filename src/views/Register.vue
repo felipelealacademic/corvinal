@@ -101,7 +101,6 @@
                       placeholder="Confirmar Senha"
                     >
                     <label class="custom-float-left" for="conf-password">Confirmar Senha</label>
-                    <!-- <span class="text-danger" v-show="password_validate">ERROR</span> -->
                   </div>
                 </div>
                 <div
@@ -109,6 +108,16 @@
                   class="alert alert-danger text-center my-3"
                   role="alert"
                 >Código de UNEPE inválido!</div>
+                <div
+                  v-show="password_validate"
+                  class="alert alert-danger text-center my-3"
+                  role="alert"
+                >Verifique se as senhas são iguais!</div>
+                <div
+                  v-show="campos_validate"
+                  class="alert alert-danger text-center my-3"
+                  role="alert"
+                >Campos obrigatórios não informados!</div>
                 <div class="row justify-content-center">
                   <div class="col-8">
                     <hr>
@@ -176,7 +185,8 @@ export default {
 
       // VALIDATE
       password_validate: false,
-      validate_unepe: false
+      validate_unepe: false,
+      campos_validate: false
     };
   },
 
@@ -212,10 +222,34 @@ export default {
     },
 
     postRegister() {
-      axios
-        .post("http://localhost:3000/user/post", { data: this.data })
-        .then(response => console.log("salvo com sucesso", response))
-        .catch(e => console.log(e));
+      if (
+        !this.data.email ||
+        !this.data.name ||
+        !this.data.last_name ||
+        !this.data.cod_acad ||
+        !this.data.unepes_selec.length ||
+        !this.data.password ||
+        this.data.password_validate
+      ) {
+        this.campos_validate = true;
+      } else {
+        if (this.data.password !== this.data.confirm_password) {
+          this.password_validate = true;
+        } else {
+          axios
+            .post("http://localhost:3000/user/post", { data: this.data })
+            .then(response => {
+              if (response.data.message.status === 0) {
+                console.log("salvo com sucesso", response);
+                this.data = {};
+                this.cod_unepe = "";
+              } else {
+                console.log("Algum erro", response);
+              }
+            })
+            .catch(e => console.log(e));
+        }
+      }
     }
   }
 };
