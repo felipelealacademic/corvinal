@@ -1,52 +1,47 @@
 create table coordenacao(
-      id serial primary key ,
-    nome varchar(255)
+    id serial primary key ,
+    name varchar(255)
 );
 
 create table unep(
-     id serial primary key ,
-    nome varchar(255),
-    codigo bigint
+    id serial primary key ,
+    name varchar(255),
+    cod bigint
 );
 
-create table usuario(
-     id serial primary key ,
-    nome varchar(255),
-    sobrenome varchar(255),
+create table user_system(
+    id serial primary key ,
+    name varchar(255),
+    lastname varchar(255),
+    cod_acad varchar(255),
     email varchar(255),
-    senha varchar(255)
+    password varchar(255)
+    
 );
 
-create table produto(
-     id serial primary key ,
-    descricao varchar(255),
-    unidade_medida varchar(255)
+create table product(
+    id serial primary key ,
+    description varchar(255),
+    unit varchar(255)
 );
 
-create table pedido (
-     id serial primary key ,
-    quantidade int
+create table order_system (
+    id serial primary key ,
+    amount int
 );
 
-create table categoria(
-     id serial primary key ,
-    nome varchar(255)
-);
-
-create table usuario_unep(
-    id serial primary key
+create table category(
+    id serial primary key ,
+    name varchar(255)
 );
 
 ALTER TABLE unep ADD CONSTRAINT FK_id_coordenacao FOREIGN KEY (id) REFERENCES coordenacao(id);
 
-ALTER TABLE usuario_unep ADD CONSTRAINT FK_id_unep FOREIGN KEY (id) REFERENCES unep(id);
-ALTER TABLE usuario_unep ADD CONSTRAINT FK_id_usuario FOREIGN KEY (id) REFERENCES usuario(id);
+ALTER TABLE unep ADD CONSTRAINT FK_id_user FOREIGN KEY (id) REFERENCES user_system(id);
 
+ALTER TABLE order_system ADD CONSTRAINT FK_id_product FOREIGN KEY (id) REFERENCES product(id);
 
-ALTER TABLE pedido ADD CONSTRAINT FK_id_usuario_unep FOREIGN KEY (id) REFERENCES usuario_unep(id);
-ALTER TABLE pedido ADD CONSTRAINT FK_id_produto FOREIGN KEY (id) REFERENCES produto(id);
+ALTER TABLE order_system ADD CONSTRAINT FK_id_category FOREIGN KEY (id) REFERENCES category(id);
 
-
-ALTER TABLE produto ADD CONSTRAINT FK_id_categoria FOREIGN KEY (id) REFERENCES categoria(id);
 
 
