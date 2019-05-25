@@ -58,6 +58,7 @@
   cursor: pointer;
 }
 
-// .card-max-height {
-//   max-height: 90vh;
-// }
+.card-max-height {
+  max-height: 490px;
+  overflow-y: auto;
+}

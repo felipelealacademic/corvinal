@@ -6,11 +6,11 @@
       </a>
     </div>
 
-    <div class="container">
-      <div class="row justify-content-around card">
-        <form class="pt-3">
-          
-            <div class="has-float-label col-lg-12 col-md-12 col-sm-12">
+    <div class="container card-max-height">
+      <div class="row justify-content-around card p-3">
+        <form>
+          <div class="form-row">
+            <div class="has-float-label my-2 col-lg-12 col-md-12 col-sm-12">
               <input
                 id="email"
                 type="email"
@@ -21,8 +21,8 @@
               <label for="email">Email</label>
             </div>
           </div>
-          
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+          <div class="form-row">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <input
                 id="first-name"
                 type="text"
@@ -32,7 +32,7 @@
               >
               <label class="custom-float-left" for="first-name">Nome</label>
             </div>
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <input
                 id="last-name"
                 type="text"
@@ -43,8 +43,8 @@
               <label class="custom-float-left" for="last-name">Sobrenome</label>
             </div>
           </div>
-          
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+          <div class="form-row">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <input
                 id="cod-acad"
                 type="text"
@@ -54,7 +54,7 @@
               >
               <label class="custom-float-left" for="cod-acad">Cód. Acadêmico</label>
             </div>
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <div class="input-group">
                 <input
                   id="cod-unepe"
@@ -75,8 +75,8 @@
               </div>
             </div>
           </div>
-          
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+          <div class="form-row">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <input
                 id="password"
                 type="password"
@@ -86,7 +86,7 @@
               >
               <label class="custom-float-left" for="password">Senha</label>
             </div>
-            <div class="has-float-label col-lg-12 col-md-6 col-sm-6">
+            <div class="has-float-label my-2 col-lg-6 col-md-6 col-sm-6">
               <input
                 id="conf-password"
                 type="password"
@@ -98,34 +98,38 @@
               <!-- <span class="text-danger" v-show="password_validate">ERROR</span> -->
             </div>
           </div>
-          <div
-            v-show="validate_unepe"
-            class="alert alert-danger text-center"
-            role="alert"
-          >Código de UNEPE inválido!</div>
-          <div class="row justify-content-center">
-            <div class="col-8">
-              <hr>
-            </div>
-          </div>
-          <!-- UNEPES SELECIONADAS -->
-          <span>UNEPEs selecionadas</span>
-          
-            <add-unepe
-              v-for="(unepe, index) in data.unepes_selec"
-              :key="unepe[0]"
-              :unepe="unepe[1]"
-              :index="index"
-              @removeUnepe="removeUnepeSelec(index)"
-            ></add-unepe>
-          </div>
-          <div class="text-center">
+          <div class="text-center py-2">
             <button
               type
               @click.prevent="postRegister()"
               @submit.prevent="postRegister()"
               class="btn btn-warning weight-fixed text-white"
             >CADASTRAR</button>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-8">
+              <hr>
+            </div>
+          </div>
+
+          <!-- UNEPES SELECIONADAS -->
+          <div
+            v-show="erro"
+            class="alert alert-danger text-center my-3"
+            role="alert"
+          >{{erroMessage}}</div>
+
+          <span>UNEPEs selecionadas</span>
+          <div class="form-row col-12">
+            <add-unepe
+              class="col-12"
+              v-for="(unepe, index) in data.unepes_selec"
+              :key="unepe[0]"
+              :unepe="unepe[1]"
+              :index="index"
+              @removeUnepe="removeUnepeSelec(index)"
+            ></add-unepe>
           </div>
         </form>
       </div>
