@@ -6,7 +6,9 @@ create table coordenacao(
 create table unep(
     id serial primary key ,
     name varchar(255),
-    cod bigint
+    cod bigint,
+    fk_id_user integer,
+    fk_id_coordenacao integer
 );
 
 create table user_system(
@@ -15,7 +17,9 @@ create table user_system(
     lastname varchar(255),
     cod_acad varchar(255),
     email varchar(255),
-    password varchar(255)
+    password varchar(255),
+    date_create date default now(),
+    date_update date
     
 );
 
@@ -35,9 +39,9 @@ create table category(
     name varchar(255)
 );
 
-ALTER TABLE unep ADD CONSTRAINT FK_id_coordenacao FOREIGN KEY (id) REFERENCES coordenacao(id);
+-- ALTER TABLE unep ADD CONSTRAINT FK_id_coordenacao FOREIGN KEY (id) REFERENCES coordenacao(id);
 
-ALTER TABLE unep ADD CONSTRAINT FK_id_user FOREIGN KEY (id) REFERENCES user_system(id);
+-- ALTER TABLE unep ADD CONSTRAINT FK_id_user FOREIGN KEY (id) REFERENCES user_system(id);
 
 ALTER TABLE order_system ADD CONSTRAINT FK_id_product FOREIGN KEY (id) REFERENCES product(id);
 
