@@ -139,40 +139,40 @@
 </template>
 
 <script>
-import axios from "axios";
-import AddUnepe from "@/components/register/AddUnepe.vue";
+import axios from 'axios';
+import AddUnepe from '@/components/register/AddUnepe.vue';
 
 export default {
-  name: "Register",
+  name: 'Register',
 
   components: {
-    AddUnepe
+    AddUnepe,
   },
 
   data() {
     return {
       data: {
-        email: "",
-        name: "",
-        last_name: "",
-        cod_acad: "",
+        email: '',
+        name: '',
+        last_name: '',
+        cod_acad: '',
         unepes_selec: [],
-        password: "",
-        confirm_password: ""
+        password: '',
+        confirm_password: '',
       },
-      cod_unepe: "",
+      cod_unepe: '',
       unepes: [
         // { 123: { nome: 'Cortes Bovinos' } },
         // { 456: { nome: 'Adubos Diversos' } },
         // { 789: { nome: 'Example Unepe' } },
-        { cod: "123", name: "Cortes Bovinos" },
-        { cod: "456", name: "Adubos Diversos" },
-        { cod: "789", name: "Example Unepe" }
+        { cod: '123', name: 'Cortes Bovinos' },
+        { cod: '456', name: 'Adubos Diversos' },
+        { cod: '789', name: 'Example Unepe' },
       ],
 
       // VALIDATE
       erro: false,
-      erroMessage: ""
+      erroMessage: '',
     };
   },
 
@@ -180,9 +180,9 @@ export default {
 
   methods: {
     addUnepe() {
-      var ok = true;
+      let ok = true;
       if (this.data.unepes_selec.length) {
-        this.data.unepes_selec.forEach(unep => {
+        this.data.unepes_selec.forEach((unep) => {
           if (this.cod_unepe === unep.cod) {
             ok = false;
           }
@@ -191,7 +191,7 @@ export default {
 
       if (ok) {
         if (this.cod_unepe !== null && this.cod_unepe !== undefined) {
-          this.unepes.forEach(e => {
+          this.unepes.forEach((e) => {
             if (this.cod_unepe === e.cod) {
               this.erro = false;
               this.data.unepes_selec.push({ cod: e.cod, name: e.name });
@@ -200,7 +200,7 @@ export default {
         }
       } else {
         this.erro = true;
-        this.erroMessage = "Código UNEP inválido!";
+        this.erroMessage = 'Código UNEP inválido!';
       }
     },
 
@@ -219,30 +219,30 @@ export default {
         this.data.password_validate
       ) {
         this.erro = true;
-        this.erroMessage = "Campos obrigatórios não informados!";
+        this.erroMessage = 'Campos obrigatórios não informados!';
       } else {
         if (this.data.password !== this.data.confirm_password) {
           this.erro = true;
-          this.erroMessage = "Verifique se as senhas estão iguais!";
+          this.erroMessage = 'Verifique se as senhas estão iguais!';
         } else {
           axios
-            .post("http://localhost:3000/user/post", { data: this.data })
-            .then(response => {
+            .post('http://localhost:3000/user/post', { data: this.data })
+            .then((response) => {
               if (response.data.message.status === 0) {
-                console.log("salvo com sucesso", response);
+                console.log('salvo com sucesso', response);
                 this.data = {};
-                this.cod_unepe = "";
+                this.cod_unepe = '';
               } else {
                 this.erro = true;
                 this.erroMessage = response.data.message.message;
-                console.log("Algum erro", response);
+                console.log('Algum erro', response);
               }
             })
             .catch(e => console.log(e));
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

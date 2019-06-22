@@ -22,24 +22,24 @@
 
 <script>
 export default {
-  name: "AddUnepe",
+  name: 'AddUnepe',
 
   props: {
     unepe: {
       type: String,
-      required: true
+      required: true,
     },
     index: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
 
   methods: {
     removeUnepe(index) {
-      this.$emit("removeUnepe", index);
-    }
-  }
+      this.$emit('removeUnepe', index);
+    },
+  },
 };
 </script>
 
