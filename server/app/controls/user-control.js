@@ -14,11 +14,10 @@ module.exports = class userControl {
     var usuarioDB = await DB.query(`Select * from user_system WHERE user_system.email = '${usuario.email}'`);
 
     let passwordIsValid = bcrypt.compareSync(usuario.password, usuarioDB.length ? usuarioDB[0].password : ''); //valida senha criptografada
-
     if (passwordIsValid) {
-      Response.retorno(0, usuarioDB);
+      return Response.retorno(0, usuarioDB);
     } else {
-      Response.retorno(0, 'Usuário não encontrado');
+      return Response.retorno(-2, 'Usuário não encontrado');
     }
   }
 
@@ -44,7 +43,7 @@ module.exports = class userControl {
           retorno = Response.falhaSalvar();
         }
       });
-      return retorno;
+      return Response.retorno(0, retorno);
     } else {
       return Response.retorno(-1, "Email já cadastrado");
     }
