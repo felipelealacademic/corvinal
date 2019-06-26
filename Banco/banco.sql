@@ -31,7 +31,9 @@ create table product(
 
 create table order_system (
     id serial primary key ,
-    amount int
+    idProduct int,
+    amount int,
+    coordenacao varchar(255)
 );
 
 create table category(
