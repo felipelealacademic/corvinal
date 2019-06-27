@@ -46,14 +46,10 @@ export default {
   watch: {
     $route(to, from) {
       this.validRoute();
-      if (!localStorage.getItem("idUser")) {
-        console.log("aqui");
-      }
     }
   },
   methods: {
     validRoute() {
-      console.log(window.location.href.indexOf("register"));
       if (
         window.location.href.indexOf("login") !== -1 ||
         window.location.href.indexOf("register") !== -1 ||
@@ -61,8 +57,6 @@ export default {
       ) {
         this.show = false;
       } else {
-        console.log("Else");
-
         this.show = true;
       }
     }
