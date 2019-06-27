@@ -5,16 +5,16 @@
     </span>
 
     <div :class="show ? 'adjust-container' : ''">
-      <div class="bar-loader"></div>
+      <div :class="show ?'bar-loader' : ''"></div>
 
-      <div class="nav-dash">
+      <div v-if="show" class="nav-dash">
         <div class="container">
           <div class="row py-2 justify-content-center align-items-center">
             <div class="col-6 ml-auto">
-              <h1 class="h5 text-white m-0">Title Page</h1>
+              <h1 class="h5 text-black m-0">Title Page</h1>
             </div>
             <div class="col-6 mr-auto text-right">
-              <a class="text-white m-0" href="#">Sair</a>
+              <a class="text-black m-0" href="/login">Sair</a>
             </div>
           </div>
         </div>
@@ -46,6 +46,9 @@ export default {
   watch: {
     $route(to, from) {
       this.validRoute();
+      if (!localStorage.getItem("idUser")) {
+        console.log("aqui");
+      }
     }
   },
   methods: {
