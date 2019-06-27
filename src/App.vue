@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    
-    <sidebar></sidebar>
-    
-    <div class="adjust-container">
+    <span v-if="show">
+      <sidebar></sidebar>
+    </span>
+
+    <div :class="show ? 'adjust-container' : ''">
       <div class="bar-loader"></div>
-      
+
       <div class="nav-dash">
         <div class="container">
           <div class="row py-2 justify-content-center align-items-center">
@@ -25,14 +26,44 @@
 </template>
 
 <script>
-import Sidebar from '@/components/dashboard/Sidebar.vue';
+import Sidebar from "@/components/dashboard/Sidebar.vue";
 // import FooterVue from '@/components/FooterVue.vue';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Sidebar,
+    Sidebar
   },
+
+  data() {
+    return {
+      show: false
+    };
+  },
+  mounted() {
+    this.validRoute();
+  },
+  watch: {
+    $route(to, from) {
+      this.validRoute();
+    }
+  },
+  methods: {
+    validRoute() {
+      console.log(window.location.href.indexOf("register"));
+      if (
+        window.location.href.indexOf("login") !== -1 ||
+        window.location.href.indexOf("register") !== -1 ||
+        window.location.href === "http://172.16.93.18:8080/"
+      ) {
+        this.show = false;
+      } else {
+        console.log("Else");
+
+        this.show = true;
+      }
+    }
+  }
 };
 </script>
 
@@ -44,7 +75,7 @@ export default {
   height: auto;
   margin: 0;
   padding: 0;
-  background: #FFFFFF;
+  background: #ffffff;
   // position: fixed;
 }
 .bar-loader {
