@@ -14,16 +14,17 @@ module.exports = class orderControl {
 
     static async set(orders) {
         let sql;
+
         for (let i = 0; i < orders.length; i++) {
             const order = orders[i];
             if (i == 0)
-                sql = 'inset into order_system values null,' + order.idProduct + ',' + order.amount + ',' + order.coordenacao + ';';
+                sql = 'insert into order_system (idproduct, amount, coordenacao) values  (' + order.idProduct + ',' + order.amount + ',' + order.coordenacao + ');';
             else
-                sql = sql + 'inset into order_system values null,' + order.idProduct + ',' + order.amount + ',' + order.coordenacao + ';';
+                sql = sql + 'insert into order_system (idproduct, amount, coordenacao) values  (' + order.idProduct + ',' + order.amount + ',' + order.coordenacao + ');';
         }
-        console.log(sql);
 
         var result = await DB.query(sql);
+
         return result;
 
     }

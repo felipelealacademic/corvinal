@@ -11,7 +11,7 @@
                     <h5 class="card-title">Selecione os pedidos</h5>
                   </div>
                   <!-- <div class="ml-auto">
-                    <button type="submit" @click="newOrder()"
+                    <button type="submit" @click="setOrder()"
                       class="btn btn-light text-white">
                       Novo Produto
                     </button>
@@ -36,11 +36,13 @@
                       class="btn text-muted">
                       Cancelar
                     </button>
-                    <button @click="newOrder()"
+                    <button
                       class="btn btn-light text-white">
                       Novo Produto
                     </button>
                     <button type="submit"
+                    @click.prevent="newOrder()"
+                     @submit.prevent="newOrder()"
                       class="btn btn-warning text-white ml-3">
                       Confirmar Pedido
                     </button>
@@ -57,15 +59,50 @@
 </template>
 
 <script>
+  import axios from "axios";
 // import Sidebar from '@/components/dashboard/Sidebar.vue'
 import SelectItems from '@/components/dashboard/SelectItems.vue'
 
 export default {
+
   name: 'Dashboard',
 
   components: {
     SelectItems,
   },
+  methods:{
+    setOrder(){
+   
+  },
+  newOrder(){
+    //exemplo de como deve se enviar os dados
+ let data = [
+   {
+      idProduct : 1,
+      amount : 47,
+      coordenacao: '5'
+    },
+    {
+      idProduct : 1,
+      amount : 47,
+      coordenacao: '5'
+    }
+ ]
+              axios
+            .post("http://localhost:3000/order/set", { data:data })
+            .then(response => {
+              console.log(response.data)
+              if (response.data.status === 0) {
+                this.data = {};
+                this.cod_unepe = "";
+// Mostrar mensagem de q deu certo o pedido
+              } else {
+                this.erro = true;
+                this.erroMessage = response.data.message;
+              }
+            })  },
+  }
+  
 };
 </script>
 
