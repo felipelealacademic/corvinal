@@ -55,13 +55,9 @@ export default {
       dropdownShow: false,
       selectedItems: [],
       items: [
-        {"id": "85808", "item_name": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "description": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "unit": "Litro"},
-        {"id": "10265", "item_name": "Herbicida Com Ingrediente Ativo Tipo Glifosato", "description": "Fórmula Concentrada Solúvel, Concentração 480 G/L. Com registro no MAPA.", "unit": "Metro"},
-        {"id": "86457", "item_name": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "description": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "unit": "Unidade"},
-        {"id": "98746", "item_name": "Herbicida Com Ingrediente Ativo Tipo Glifosato", "description": "Fórmula Concentrada Solúvel, Concentração 480 G/L. Com registro no MAPA.", "unit": "Unidade"},
-        {"id": "35465", "item_name": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "description": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "unit": "Unidade"},
-        {"id": "74564", "item_name": "Herbicida Com Ingrediente Ativo Tipo Glifosato", "description": "Fórmula Concentrada Solúvel, Concentração 480 G/L. Com registro no MAPA.", "unit": "Unidade"},
-        {"id": "85810", "item_name": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "description": "Adjuvante a base de éster metílico de óleo de soja (720 G/L)", "unit": "Unidade"},
+        {"id": "85808", "item_name": "COAGR"},
+        {"id": "85809", "item_name": "COZOO"},
+        {"id": "65810", "item_name": "COEBB"},
       ],
     };
   },

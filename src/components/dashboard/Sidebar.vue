@@ -9,7 +9,9 @@
           <img class="img-fluid px-3" src="/images/logo-utfpr-default.png" alt="">
         </li>
         <list-menu url="#" icon="account_balance" text="Efetuar Pedidos"/>
-        <list-menu url="#" icon="account_balance" text="Registro de Pedidos"/>
+        <list-menu url="#" icon="account_balance" text="Relatório Parcial"/>
+        <list-menu url="#" icon="account_balance" text="Relatório Geral"/>
+        <list-menu url="#" icon="account_balance" text="Orçamentos"/>
         <!-- <list-menu url="#" icon="account_balance" text="Testeasdasd"/>
         <list-menu url="#" icon="account_balance" text="Testeasda as"/> -->
       </ul>

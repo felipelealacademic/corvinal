@@ -7,7 +7,7 @@
             <div class="card-body">
               <div class="container">
                 <div class="row justify-content-around mb-3 align-content-center">
-                  <div class="mr-auto">
+                  <div class="mr-auto px-2">
                     <h5 class="card-title">Selecione os pedidos</h5>
                   </div>
                   <!-- <div class="ml-auto">
@@ -27,24 +27,22 @@
               />
 
               <div class="container mt-5">
-                <div class="row justify-content-around align-content-center">
+                <div class="row justify-content-around align-content-center px-2">
                   <div class="mr-auto">
                     <p class="text-muted m-0">Items selecionados: 0</p>
                   </div>
                   <div class="ml-auto">
-                    <button 
+                    <!-- <button 
                       class="btn text-muted">
                       Cancelar
-                    </button>
-                    <button
-                      class="btn btn-light text-white">
-                      Novo Produto
+                    </button> -->
+                    <button 
+                      class="btn btn-secondary text-white">
+                      Cancelar
                     </button>
                     <button type="submit"
-                    @click.prevent="newOrder()"
-                     @submit.prevent="newOrder()"
                       class="btn btn-warning text-white ml-3">
-                      Confirmar Pedido
+                      Enviar
                     </button>
                   </div>
                 </div>

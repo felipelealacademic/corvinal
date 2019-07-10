@@ -27,7 +27,7 @@
           <div class="form-group">
             <div class="has-float-label">
               <input id="qtde" type="number" v-model="item_qtde"
-                class="rounded" placeholder=" "/>
+                class="rounded" placeholder=" " min="0"/>
               <label for="qtde">Qtde</label>
             </div>
           </div>

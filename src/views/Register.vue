@@ -1,7 +1,7 @@
 <template>
   <div class="bg-utfpr-default">
     <div class="logo-utfpr">
-      <a href="/register">
+      <a href="/login">
         <img width="120" src="/images/logo-utfpr-white.png" alt>
       </a>
     </div>
@@ -120,11 +120,11 @@
             role="alert"
           >{{erroMessage}}</div>
 
-          <span>UNEPEs selecionadas</span>
+          <span class="mb-3">UNEPEs selecionadas</span>
 
           <div class="form-row">
             <add-unepe
-              class="col-12"
+              class="col-4"
               v-for="(unepe, index) in data.unepes_selec"
               :key="index"
               :unepe="unepe.name"

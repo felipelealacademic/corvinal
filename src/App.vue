@@ -9,7 +9,7 @@
 
       <div v-if="show" class="nav-dash">
         <div class="container">
-          <div class="row py-2 justify-content-center align-items-center">
+          <div class="row py-3 justify-content-center align-items-center">
             <div class="col-6 ml-auto">
               <h1 class="h5 text-black m-0">Title Page</h1>
             </div>
