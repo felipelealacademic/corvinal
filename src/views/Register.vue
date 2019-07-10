@@ -97,14 +97,15 @@
               <label class="custom-float-left" for="conf-password">Confirmar Senha</label>
               <!-- <span class="text-danger" v-show="password_validate">ERROR</span> -->
             </div>
-          </div>
-          <div class="text-center py-2">
+          <div class="text-center py-2 col-12">
             <button
               type
               @click.prevent="postRegister()"
               @submit.prevent="postRegister()"
-              class="btn btn-warning weight-fixed text-white"
+              class="btn btn-warning text-white"
+              style="width:100%;"
             >CADASTRAR</button>
+          </div>
           </div>
 
           <div class="row justify-content-center">
