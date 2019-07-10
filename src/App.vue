@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
       if (
         window.location.href.indexOf("login") !== -1 ||
         window.location.href.indexOf("register") !== -1 ||
-        window.location.href === "http://172.16.93.18:8080/"
+        window.location.href === "http://192.168.1.19:8080/"
       ) {
         this.show = false;
       } else {
